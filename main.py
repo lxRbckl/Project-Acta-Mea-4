@@ -31,24 +31,26 @@ async def setFunction(ctx, pKeyA: str, pKeyB: str, pElement: str, pData: dict):
     if ((pKeyA not in pData.keys()) and (not pKeyB) and (not pElement)): var = pData[pKeyA] = {}
     elif (pKeyA in pData.keys()):
 
-        # if (value for node) <
-        # elif (service for node services) <
-        if (pKeyB): var = pData[pKeyA][pKeyB] = pElement if (pElement) else []
-        elif ((pKeyB == 'service') and (pElement)): pData[pKeyA][pKeyB].append(pElement); var = 1
+        # if (value for key) <
+        # elif (then create service) <
+        # elif (then add to service) <
+        if (pKeyB != 'service'): var = pData[pKeyA][pKeyB] = pElement if (pElement) else []
+        elif ((pKeyB not in pData[pKeyA].keys()) and (pKeyB == 'service')): var = pData[pKeyA][pKeyB] = []
+        elif ((pKeyB in pData[pKeyA].keys()) and (pElement)): pData[pKeyA][pKeyB].append(pElement); var = 1
 
         # >
 
     # >
 
     # if (data change) <
-    if (var): githubSet(
+    if (var is not None): githubSet(
 
         pData = pData,
         pFile = gFile,
         pRepository = gRepository,
         pGithub = Github(githubToken)
 
-    )
+    );
 
     # >
 
@@ -57,11 +59,11 @@ async def getFunction(ctx, pKeyA: str, pKeyB: str, pElement: str, pData: dict):
     '''  '''
 
     # if (all nodes) <
-    # if (node values) <
-    # if (values of node value) <
+    # elif (keys from node) <
+    # elif (values from key) <
     if ((not pKeyA) and (not pKeyB)): var = pData.keys()
-    elif (pKeyB in pData[pKeyA].keys()): var = pData[pKeyA][pKeyB].keys()
-    elif ((not pKeyB) and (pKeyA in pData.keys())): var = pData[pKeyA].keys()
+    elif ((not pKeyB) and (pKeyA in pData.keys())): var = pData[pKeyA]
+    elif (pKeyB in pData[pKeyA].keys()): var = pData[pKeyA][pKeyB] if (pKeyB == 'service') else [pData[pKeyA][pKeyB]]
 
     # >
 
@@ -81,8 +83,8 @@ async def whereFunction(ctx, pKeyA: str, pKeyB: str, pElement: str, pData: dict)
 
     # get data <
     # filter data <
-    var = {k : [i.lower().split('-') for i in v['running']] for k, v in pData.items()}
-    var = [k for k in var.items() for i in v if (pKeyA in i)]
+    var = {k : [i.lower().split('-') for i in v['service']] for k, v in pData.items()}
+    var = [k for k, v in var.items() for i in v if (pKeyA in i)]
 
     # >
 
@@ -107,7 +109,7 @@ async def deleteFunction(ctx, pKeyA: str, pKeyB: str, pElement: str, pData: dict
 
         # if (value for node) <
         # elif (service for node services) <
-        if (pKeyB): del pData[pKeyA][pKeyB]; var = 1
+        if (pKeyB != 'service'): del pData[pKeyA][pKeyB]; var = 1
         elif ((pKeyB == 'service') and (pElement)): pData[pKeyA][pKeyB].remove(pElement); var = 1
 
         # >
@@ -136,6 +138,7 @@ async def commandFunction(ctx, pKey: str = None, pValue: str = None, pElement: s
 
         'set' : setFunction,
         'get' : getFunction,
+        'del' : deleteFunction,
         'where' : whereFunction,
         'delete' : deleteFunction
 
