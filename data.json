@@ -1,1 +1,1 @@
-{"example": {"service": ["pure"], "test": "here"}}
+{"example": {"service": ["pure", "here"], "test": "here"}}
