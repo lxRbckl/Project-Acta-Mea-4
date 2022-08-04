@@ -1,0 +1,19 @@
+{
+  "aliases" : [
+    "set",
+    "Set",
+    "SET",
+    "get",
+    "Get",
+    "GET",
+    "where",
+    "Where",
+    "WHERE",
+    "del",
+    "Del",
+    "DEL",
+    "delete",
+    "Delete",
+    "DELETE"
+  ]
+}
