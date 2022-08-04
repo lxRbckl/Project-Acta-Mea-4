@@ -1,1 +1,1 @@
-{"example": {"a": "b", "service": []}}
+{"example": {"a": "b", "service": ["a"]}}
