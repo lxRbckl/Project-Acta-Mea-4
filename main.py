@@ -34,7 +34,7 @@ async def setFunction(ctx, pKeyA: str, pKeyB: str, pElement: str, pData: dict):
         # if (value for key) <
         # elif (then create service) <
         # elif (then add to service) <
-        if (pKeyB != 'service'): var = pData[pKeyA][pKeyB] = pElement if (pElement) else []
+        if ((pKeyB != 'service') and (pKeyB)): var = pData[pKeyA][pKeyB] = pElement if (pElement) else []
         elif ((pKeyB not in pData[pKeyA].keys()) and (pKeyB == 'service')): var = pData[pKeyA][pKeyB] = []
         elif ((pKeyB in pData[pKeyA].keys()) and (pElement)): pData[pKeyA][pKeyB].append(pElement); var = 1
 
