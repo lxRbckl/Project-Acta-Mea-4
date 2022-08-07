@@ -61,7 +61,7 @@ async def getFunction(ctx, pKeyA: str, pKeyB: str, pElement: str, pData: dict):
     # if (all nodes) <
     # elif (keys from node) <
     # elif (values from key) <
-    if ((not pKeyA) and (not pKeyB)): var = pData.keys()
+    if ((not pKeyA) and (not pKeyB)): var = sorted(pData.keys())
     elif ((not pKeyB) and (pKeyA in pData.keys())): var = pData[pKeyA]
     elif (pKeyB in pData[pKeyA].keys()): var = pData[pKeyA][pKeyB] if (pKeyB == 'service') else [pData[pKeyA][pKeyB]]
 
