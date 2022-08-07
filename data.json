@@ -1,1 +1,1 @@
-{"ubuntu14": {"ssh": "pi@192.168.86.43", "service": []}, "ubuntu03": {"service": [], "ssh": "pi@192.168.86.59"}, "ubuntu13": {"service": [], "ssh": "pi@192.168.86.42"}, "ubuntu02": {"service": [], "ssh": "pi@192.168.86.53"}, "ubuntu09": {}}
+{"ubuntu14": {"ssh": "pi@192.168.86.43", "service": []}, "ubuntu03": {"service": [], "ssh": "pi@192.168.86.59"}, "ubuntu13": {"service": [], "ssh": "pi@192.168.86.42"}, "ubuntu02": {"service": [], "ssh": "pi@192.168.86.53"}, "ubuntu09": {"service": []}}
