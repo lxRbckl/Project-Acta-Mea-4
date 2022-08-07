@@ -71,7 +71,7 @@ async def getFunction(ctx, pKeyA: str, pKeyB: str, pElement: str, pData: dict):
     if (var): await ctx.channel.send(
 
         delete_after = 60,
-        content = '\n'.join(f'`{i}`' for i in var)
+        content = '\n'.join('{}'.format(i.replace('-', ' ')) for i in var)
 
     )
 
