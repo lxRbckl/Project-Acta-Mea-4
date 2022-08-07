@@ -1,5 +1,5 @@
 ## `Project Skotak`
-> 
+> Manage servers and services through a Discord bot with a remote data file. Spring 2022.
 
 ### `Installation`
 ```
