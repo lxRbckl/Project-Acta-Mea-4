@@ -3,7 +3,7 @@
 
 ### `Installation`
 ```
-git clone https://github.com/lxRbckl/Project-Acta-Mea-4.git
-cd Project-Acta-Mea-4
+git clone https://github.com/lxRbckl/Project-RB8.git
+cd Project-RB8
 pip3 install -r requirements.txt
 ```
