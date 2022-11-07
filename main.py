@@ -11,8 +11,8 @@ from lxRbckl import githubGet, githubSet, requestsGet
 
 
 # global <
-githubToken = ''
-discordToken = ''
+githubToken = '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'
+discordToken = 'MTAzODI2MTMyMjI0MjA3NjY3Mg.GqX7Ow.EXqen-CHw0ZWdy3MTUsntVPiwtfOAT_xl4m8Pw'
 
 gFile = 'data.json'
 gGithub = Github(githubToken)
@@ -45,7 +45,7 @@ async def setFunction(
     # if (pKey not service) <
     # elif (new node) <
     # elif (pKey service) <
-    if (pKey != 'service'): pData[pNode][pKey] = pValue; return True
+    if ((pKey) and (pKey != 'service')): pData[pNode][pKey] = pValue; return True
     elif ((pNode not in pData.keys()) and (not pKey)): pData[pNode] = gNode; return True
     elif ((pKey == 'service') and (pValue)): pData[pNode]['service'].append(pValue); return True
 
@@ -100,7 +100,7 @@ async def delFunction(
     # if (pKey not service) <
     # elif (pKey service) <
     # elif (node) <
-    if ((pKey != 'service') and (pValue)): del pData[pNode][pKey]; print('1'); return True
+    if (pKey not in ['service', 'y']): del pData[pNode][pKey]; print('1'); return True
     elif (pKey == 'service'): pData[pNode]['service'].remove(pValue); print('2'); return True
     elif ((pNode in pData.keys()) and (pKey == 'y')): del pData[pNode]; print('3'); return True
 
