@@ -11,8 +11,8 @@ from lxRbckl import githubGet, githubSet, requestsGet
 
 
 # global <
-githubToken = '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'
-discordToken = 'MTAzODI2MTMyMjI0MjA3NjY3Mg.GqX7Ow.EXqen-CHw0ZWdy3MTUsntVPiwtfOAT_xl4m8Pw'
+githubToken = ''
+discordToken = ''
 
 gFile = 'data.json'
 gGithub = Github(githubToken)
