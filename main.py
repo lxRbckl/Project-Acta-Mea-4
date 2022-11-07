@@ -1,162 +1,164 @@
-# Project Acta Mea by Alex Arbuckl #
+# Project Acta Mea by Alex Arbuckle #
 
 
 # import <
-from os import path
 from github import Github
 from discord import Intents
 from discord.ext import commands
-from lxRbckl import githubGet, githubSet, jsonLoad
+from lxRbckl import githubGet, githubSet, requestsGet
 
 # >
 
 
 # global <
-gFile = ''
-gRepository = ''
-gPath = path.realpath(__file__).split('/')
-gDirectory = '/'.join(gPath[:(len(gPath) - 1)])
 githubToken = ''
-actaMea = commands.Bot(command_prefix = '', intents = Intents.all())
 discordToken = ''
+
+gFile = 'data.json'
+gGithub = Github(githubToken)
+gRepository = 'lxRbckl/Project-Acta-Mea-4'
+actaMea = commands.Bot(command_prefix = '', intents = Intents.all())
+gSettingLink = 'https://github.com/lxRbckl/Project-Acta-Mea-4/raw/main/setting.json'
+gNode = {
+
+    "ssh" : "",
+    "type" : "",
+    "description" : "",
+    "service" : []
+
+}
 
 # >
 
 
-async def setFunction(ctx, pKeyA: str, pKeyB: str, pElement: str, pData: dict):
+async def setFunction(
+
+        ctx,
+        pNode: str = None,
+        pKey: str = None,
+        pValue: str = None,
+        pData: dict = None
+
+):
     '''  '''
 
-    # if (new node) <
-    # elif (then existing node) <
-    if ((pKeyA not in pData.keys()) and (not pKeyB) and (not pElement)): var = pData[pKeyA] = {}
-    elif (pKeyA in pData.keys()):
-
-        # if (value for key) <
-        # elif (then create service) <
-        # elif (then add to service) <
-        if ((pKeyB != 'service') and (pKeyB)): var = pData[pKeyA][pKeyB] = pElement if (pElement) else []
-        elif ((pKeyB not in pData[pKeyA].keys()) and (pKeyB == 'service')): var = pData[pKeyA][pKeyB] = []
-        elif ((pKeyB in pData[pKeyA].keys()) and (pElement)): pData[pKeyA][pKeyB].append(pElement); var = 1
-
-        # >
-
-    # >
-
-    # if (data change) <
-    if (var is not None): githubSet(
-
-        pData = pData,
-        pFile = gFile,
-        pRepository = gRepository,
-        pGithub = Github(githubToken)
-
-    );
+    # if (pKey not service) <
+    # elif (new node) <
+    # elif (pKey service) <
+    if (pKey != 'service'): pData[pNode][pKey] = pValue; return True
+    elif ((pNode not in pData.keys()) and (not pKey)): pData[pNode] = gNode; return True
+    elif ((pKey == 'service') and (pValue)): pData[pNode]['service'].append(pValue); return True
 
     # >
 
 
-async def getFunction(ctx, pKeyA: str, pKeyB: str, pElement: str, pData: dict):
+async def getFunction(
+
+        ctx,
+        pNode: str = None,
+        pKey: str = None,
+        pData: dict = None,
+        **kwargs
+
+):
     '''  '''
 
-    # if (all nodes) <
-    # elif (keys from node) <
-    # elif (values from key) <
-    if ((not pKeyA) and (not pKeyB)): var = sorted(pData.keys())
-    elif ((not pKeyB) and (pKeyA in pData.keys())): var = pData[pKeyA]
-    elif (pKeyB in pData[pKeyA].keys()): var = pData[pKeyA][pKeyB] if (pKeyB == 'service') else [pData[pKeyA][pKeyB]]
+    # if (pKey not service) <
+    # elif (pKey service) <
+    # elif (node) <
+    # elif (all nodes) <
+    if ((pKey) and (pKey != 'service')): content = pData[pNode][pKey]
+    elif (pKey == 'service'): content = '\n'.join(pData[pNode][pKey])
+    elif ((pNode) and (not pKey)): content = '\n'.join(pData[pNode].keys())
+    elif ((not pKey) and (not pNode)): content = '\n'.join(sorted(pData.keys()))
 
     # >
 
-    # if (data) <
-    if (var): await ctx.channel.send(
+    # send <
+    await ctx.channel.send(
 
         delete_after = 60,
-        content = '\n'.join('`{}`'.format(i.replace('-', ' ')) for i in var)
+        content = f'`{content}`'
 
-    )
+    ) if (content) else None
 
     # >
 
+    return False
 
-async def whereFunction(ctx, pKeyA: str, pKeyB: str, pElement: str, pData: dict):
+async def delFunction(
+
+        ctx,
+        pNode: str = None,
+        pKey: str = None,
+        pValue: str = None,
+        pData: dict = None
+
+):
     '''  '''
 
-    # get data <
-    # filter data <
-    var = {k : [i.lower().split('-') for i in v['service']] for k, v in pData.items()}
-    var = [k for k, v in var.items() for i in v if (pKeyA in i)]
-
-    # >
-
-    # if (data) <
-    if (len(var) > 0): await ctx.channel.send(
-
-        delete_after = 60,
-        content = '\n'.join(f'`{i}`' for i in var)
-
-    )
-
-    # >
-
-
-async def deleteFunction(ctx, pKeyA: str, pKeyB: str, pElement: str, pData: dict):
-    '''  '''
-
-    # if (node) <
-    # else (then existing node) <
-    if ((pKeyA in pData.keys()) and (not pKeyB) and (not pElement)): del pData[pKeyA]; var = 1
-    elif ((pKeyA in pData.keys()) and (pKeyB or pElement)):
-
-        # if (value for node) <
-        # elif (service for node services) <
-        if (pKeyB != 'service'): del pData[pKeyA][pKeyB]; var = 1
-        elif ((pKeyB == 'service') and (pElement)): pData[pKeyA][pKeyB].remove(pElement); var = 1
-
-        # >
-
-    # >
-
-    # if (data change) <
-    if (var): githubSet(
-
-        pData = pData,
-        pFile = gFile,
-        pRepository = gRepository,
-        pGithub = Github(githubToken)
-
-    )
+    # if (pKey not service) <
+    # elif (pKey service) <
+    # elif (node) <
+    if ((pKey != 'service') and (pValue)): del pData[pNode][pKey]; print('1'); return True
+    elif (pKey == 'service'): pData[pNode]['service'].remove(pValue); print('2'); return True
+    elif ((pNode in pData.keys()) and (pKey == 'y')): del pData[pNode]; print('3'); return True
 
     # >
 
 
 @commands.has_permissions(administrator = True)
-@actaMea.command(aliases = jsonLoad(pFile = f'{gDirectory}/setting.json')['aliases'])
-async def commandFunction(ctx, pKey: str = None, pValue: str = None, pElement: str = None):
+@actaMea.command(aliases = requestsGet(pLink = gSettingLink)['aliases'])
+async def functionCommand(
+
+        ctx,
+        pNode: str = None,
+        pKey: str = None,
+        pValue: str = None
+
+):
     '''  '''
 
-    await {
+    # set (data) <
+    # get (rData) <
+    data = githubGet(
+
+        pGithub = gGithub,
+        pFile = 'data.json',
+        pRepository = gRepository
+
+    )
+    bData = await {
 
         'set' : setFunction,
         'get' : getFunction,
-        'del' : deleteFunction,
-        'where' : whereFunction,
-        'delete' : deleteFunction
+        'del' : delFunction
 
     }[ctx.invoked_with.lower()](
 
         ctx = ctx,
-        pKeyA = pKey,
-        pKeyB = pValue,
-        pElement = pElement,
-        pData = githubGet(
+        pKey = pKey,
+        pData = data,
+        pNode = pNode,
+        pValue = pValue
 
+    )
+
+    # >
+
+    # if (update) <
+    if (bData):
+
+        githubSet(
+
+            pData = data,
             pFile = gFile,
-            pRepository = gRepository,
-            pGithub = Github(githubToken)
+            pGithub = gGithub,
+            pRepository = gRepository
 
         )
 
-    )
+    # >
 
 
 # main <
