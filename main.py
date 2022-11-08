@@ -34,10 +34,10 @@ gNode = {
 async def setFunction(
 
         ctx,
-        pNode: str = None,
         pKey: str = None,
-        pValue: str = None,
-        pData: dict = None
+        pNode: str = None,
+        pData: dict = None,
+        pValue: str = None
 
 ):
     '''  '''
@@ -55,8 +55,8 @@ async def setFunction(
 async def getFunction(
 
         ctx,
-        pNode: str = None,
         pKey: str = None,
+        pNode: str = None,
         pData: dict = None,
         **kwargs
 
@@ -89,10 +89,10 @@ async def getFunction(
 async def delFunction(
 
         ctx,
-        pNode: str = None,
         pKey: str = None,
-        pValue: str = None,
-        pData: dict = None
+        pNode: str = None,
+        pData: dict = None,
+        pValue: str = None
 
 ):
     '''  '''
@@ -120,7 +120,7 @@ async def functionCommand(
     '''  '''
 
     # set (data) <
-    # get (rData) <
+    # get (bData) <
     data = githubGet(
 
         pGithub = gGithub,
