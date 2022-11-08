@@ -9,7 +9,7 @@ Deprecated==1.2.13
 discord==1.7.3
 discord.py==1.7.3
 idna==3.3
-lxRbckl==0.82
+lxRbckl==0.92
 multidict==6.0.2
 pycparser==2.21
 PyGithub==1.55
