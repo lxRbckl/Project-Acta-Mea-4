@@ -15,19 +15,20 @@
             "markdown",
             null,
             "https://raw.githubusercontent.com/lxRbckl/Project-Acta-Mea-4/main/installation.md"
-          ],
+          ]
+
+        ]
+
+      },
+      "Problems" : {
+
+        "title" : null,
+        "subject" : [
+
           [
-            "subtitle",
+            "markdown",
             null,
-            "Note"
-          ],
-          [
-            "text",
-            null,
-            [
-              "example",
-              "https://github.com/ala2q6"
-            ]
+            "https://raw.githubusercontent.com/lxRbckl/lxRbckl/main/markdown/pygithubProblem.md"
           ]
 
         ]
