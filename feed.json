@@ -15,6 +15,20 @@
             "markdown",
             null,
             "https://raw.githubusercontent.com/lxRbckl/Project-Acta-Mea-4/main/installation.md"
+          ],
+          [
+            "subtitle",
+            null,
+            "Notes"
+          ],
+          [
+            "text",
+            "null",
+            [
+              "example",
+              "test",
+              "This is an example"
+            ]
           ]
 
         ]
