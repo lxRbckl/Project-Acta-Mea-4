@@ -1,0 +1,26 @@
+{
+  "feed" : {
+
+    "link" : null,
+    "border" : null,
+    "background": null,
+    "content" : {
+
+      "Installation" : {
+
+        "title" : null,
+        "subject" : [
+
+          "markdown",
+          null,
+          "https://raw.githubusercontent.com/lxRbckl/Project-Acta-Mea-4/main/installation.md"
+
+        ]
+
+      }
+
+    }
+
+  }
+
+}
