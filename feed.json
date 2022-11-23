@@ -20,26 +20,42 @@
         ]
 
       },
-      "Problems" : {
-
+      "Having Problems?" : {
         "title" : null,
         "subject" : [
 
           [
-            "markdown",
+            "subtitle",
             null,
-            "https://raw.githubusercontent.com/lxRbckl/lxRbckl/main/markdown/pygithubProblem.md"
+            "Problem"
           ],
           [
-            "text",
+            "markdown",
             null,
-            [
-              "[this](www.google.com)"
-            ]
+            "https://raw.githubusercontent.com/lxRbckl/lxRbckl/main/markdown/pygithubInstallation/problem.md"
+          ],
+          [
+            "subtitle",
+            null,
+            "Solution"
+          ],
+          [
+            "markdown",
+            null,
+            "https://raw.githubusercontent.com/lxRbckl/lxRbckl/main/markdown/pygithubInstallation/solution.md"
+          ],
+          [
+            "subtitle",
+            null,
+            "Resource"
+          ],
+          [
+            "markdown",
+            null,
+            "https://raw.githubusercontent.com/lxRbckl/lxRbckl/main/markdown/pygithubInstallation/resource.md"
           ]
 
         ]
-
       }
 
     }
