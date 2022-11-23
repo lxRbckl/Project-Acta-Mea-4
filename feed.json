@@ -19,15 +19,14 @@
           [
             "subtitle",
             null,
-            "Notes"
+            "Note"
           ],
           [
             "text",
             "null",
             [
               "example",
-              "test",
-              "This is an example"
+              "https://github.com/ala2q6"
             ]
           ]
 
