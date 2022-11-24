@@ -28,7 +28,7 @@
             "text",
             null,
             [
-              "The following problem occurs most often in virtual environments. This error occurs when your interpreter cannot find a package, which in this case is pygithub. The command in the trailing box ensures that the package you are installing is tied to the pip installer used with the executable Python file."
+              "The following problem occurs most often in virtual environments. This error occurs when your interpreter cannot find a package, which in this case is pygithub. The command in the trailing box ensures that the package you are installing is tied to the pip installer used with the executable Python file. The final box contains all the resources I used to overcome this problem."
             ]
           ],
           [
