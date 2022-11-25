@@ -26,6 +26,11 @@
         "subject" : [
 
           [
+            "space",
+            null,
+            null
+          ],
+          [
             "subtitle",
             null,
             "Pygithub Import Error?"
