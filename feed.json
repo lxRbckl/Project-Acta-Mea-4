@@ -2,8 +2,8 @@
   "feed" : {
 
     "link" : null,
+    "image": null,
     "border" : null,
-    "background": null,
     "content" : {
 
       "Installation" : {
