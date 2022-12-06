@@ -9,6 +9,7 @@
       "Installation" : {
 
         "title" : null,
+        "background" : "red",
         "subject" : [
 
           [
@@ -23,6 +24,7 @@
       "Troubleshooting" : {
 
         "title" : null,
+        "background" : null,
         "subject" : [
 
           [
